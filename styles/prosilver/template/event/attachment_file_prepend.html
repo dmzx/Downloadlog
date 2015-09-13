@@ -1,0 +1,15 @@
+<!-- IF _file.S_IMAGE -->
+	<dl class="filedoawnload">
+		<dt class="attach-image"><img src="{_file.U_INLINE_LINK}" class="postimage" alt="{_file.DOWNLOAD_NAME}" onclick="viewableArea(this);" /></dt>
+		<!-- IF _file.COMMENT --><dd><em>{_file.COMMENT}</em></dd><!-- ENDIF -->
+		<dd>{_file.DOWNLOAD_NAME} ({_file.FILESIZE} {_file.SIZE_LANG}) {_file.L_DOWNLOAD_COUNT}</dd>
+	</dl>
+<!-- ENDIF -->
+<!-- IF _file.S_FILE -->
+	<dl class="filedownload">
+		<dt><!-- IF _file.UPLOAD_ICON -->{_file.UPLOAD_ICON} <!-- ENDIF --><a class="postlink" href="{_file.U_DOWNLOAD_LINK}">{_file.DOWNLOAD_NAME}</a></dt>
+		<!-- IF _file.COMMENT --><dd><em>{_file.COMMENT}</em></dd><!-- ENDIF -->
+		<dd>({_file.FILESIZE} {_file.SIZE_LANG}) {_file.L_DOWNLOAD_COUNT}</dd>
+		<dd><!-- IF (U_MCP or U_ACP) --><a href="{U_DOWNLOADLOG}?file={_file.U_FILE_ID}" onclick="popup(this.href, 950, 350); return false;"	title="{L_DOWNLOADLOG_VIEW_LOG}" >{L_DOWNLOADLOG_VIEW_LOG}</a><!-- ENDIF --></dd>
+	</dl>
+<!-- ENDIF -->

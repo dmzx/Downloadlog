@@ -1,0 +1,25 @@
+imports:
+    - { resource: tables.yml }
+services:
+    dmzx.downloadlog.controller:
+        class: dmzx\downloadlog\controller\downloadlog
+        arguments:
+            - @template
+            - @log
+            - @user
+            - @auth
+            - @dbal.conn
+            - @request
+            - %dmzx.downloadlog.table.downloadlog%
+    dmzx.downloadlog.listener:
+        class: dmzx\downloadlog\event\listener
+        arguments:
+            - @config
+            - @template
+            - @user
+            - @dbal.conn
+            - @controller.helper
+            - @request
+            - %dmzx.downloadlog.table.downloadlog%
+        tags:
+            - { name: event.listener }

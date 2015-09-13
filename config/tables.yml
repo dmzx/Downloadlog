@@ -1,0 +1,2 @@
+parameters:
+    dmzx.downloadlog.table.downloadlog: %core.table_prefix%userdownloadslog

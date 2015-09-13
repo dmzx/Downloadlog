@@ -1,0 +1,32 @@
+{
+	"name": "dmzx/downloadlog",
+	"type": "phpbb-extension",
+	"description": "This extension will add a downloadlog for downloaded attachments.",
+	"homepage": "http://www.dmzx-web.net",
+	"version": "1.0.0",
+	"time": "2015-09-13",
+	"keywords": ["phpbb", "extension", "Downloadlog"],
+	"license": "GPL-2.0",
+	"authors": [
+		{
+			"name": "dmzx",
+			"homepage": "http://www.dmzx-web.net",
+			"email": "info@dmzx-web.net",
+			"role": "Extension Developer"
+		}
+	],
+	"require": {
+		"php": ">=5.3.3"
+	},
+	"extra": {
+		"display-name": "Downloadlog",
+		"soft-require": {
+			"phpbb/phpbb": "3.1.*"
+		},
+		"version-check": {
+			"host": "www.dmzx-web.net",
+			"directory": "/versions",
+			"filename": "downloadlog_version.json"
+		}
+	}
+}
