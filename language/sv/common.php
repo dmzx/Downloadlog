@@ -41,5 +41,5 @@ $lang = array_merge($lang, array(
 	'DOWNLOADLOG_VIEW_LOG'	=> 'Visa logg',
 	'DOWNLOADLOG_USERNAME'	=> 'Användarnamn',
 	'DOWNLOADLOG_DATE'		=> 'Datum',
-	'DOWNLOADERS_LOG'	    => 'Nerladdningslogg',
+	'DOWNLOADERS_LOG'		=> 'Nerladdningslogg',
 ));
