@@ -40,5 +40,5 @@ $lang = array_merge($lang, array(
 	'DOWNLOADLOG_VIEW_LOG'	=> 'Mostra storico',
 	'DOWNLOADLOG_USERNAME'	=> 'Nome utente',
 	'DOWNLOADLOG_DATE'		=> 'Data download',
-	'DOWNLOADERS_LOG'	    => 'Storico download',
+	'DOWNLOADERS_LOG'		=> 'Storico download',
 ));
