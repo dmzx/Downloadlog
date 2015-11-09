@@ -46,23 +46,26 @@ class listener implements EventSubscriberInterface
 
 	/**
 	* Constructor
+	*
 	* @param \phpbb\config\config				$config
 	* @param \phpbb\template\template			$template
 	* @param \phpbb\user						$user
 	* @param \phpbb\db\driver\driver_interface	$db
 	* @param \phpbb\controller\helper			$controller_helper
 	* @param \phpbb\request\request			 	$request
+	* @param 			 						$userdownloadslog_table
 	*
 	*/
+
 	public function __construct(\phpbb\config\config $config, \phpbb\template\template $template, \phpbb\user $user, \phpbb\db\driver\driver_interface $db, \phpbb\controller\helper $controller_helper, \phpbb\request\request $request, $userdownloadslog_table)
 	{
-		$this->config = $config;
-		$this->template = $template;
-		$this->user = $user;
-		$this->db = $db;
-		$this->controller_helper = $controller_helper;
-		$this->request = $request;
-		$this->userdownloadslog_table = $userdownloadslog_table;
+		$this->config 					= $config;
+		$this->template 				= $template;
+		$this->user 					= $user;
+		$this->db 						= $db;
+		$this->controller_helper 		= $controller_helper;
+		$this->request 					= $request;
+		$this->userdownloadslog_table 	= $userdownloadslog_table;
 	}
 
 	static public function getSubscribedEvents()

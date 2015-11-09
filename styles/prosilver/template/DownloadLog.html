@@ -2,9 +2,23 @@
 <span>
 <h3>{L_DOWNLOADERS_LOG}{L_COLON}</h3>
 </span>
+
+<div class="action-bar top">
+	<!-- IF .pagination or DOWNLOADERS_USERS -->
+	<div class="pagination">
+		 {DOWNLOADERS_USERS}
+		<!-- IF .pagination -->
+			<!-- INCLUDE pagination.html -->
+		<!-- ELSE -->
+			&bull; {PAGE_NUMBER}
+		<!-- ENDIF -->
+	</div>
+	<!-- ENDIF -->
+</div>
+
 <div class="forumbg">
 	<div class="inner">
-		<table class="table1" cellspacing="1">
+		<table class="table1">
 			<thead>
 			<tr>
 				<th style="text-align: left">{L_DOWNLOADLOG_USERNAME}</th>
@@ -23,6 +37,19 @@
 	</div>
 </div>
 
-<!-- INCLUDE simple_footer.html -->
+<div class="action-bar bottom">
+	<!-- IF .pagination or DOWNLOADERS_USERS -->
+	<div class="pagination">
+		 {DOWNLOADERS_USERS}
+		<!-- IF .pagination -->
+			<!-- INCLUDE pagination.html -->
+		<!-- ELSE -->
+			&bull; {PAGE_NUMBER}
+		<!-- ENDIF -->
+	</div>
+	<!-- ENDIF -->
+</div>
 
-		
+<div class="copyright"><a href="http://www.dmzx-web.net/" onclick="window.open(this.href); return false" title="{L_DOWNLOADERS_COPYRIGHT_DMZX_TITLE}" alt="{L_DOWNLOADERS_COPYRIGHT_DMZX_TITLE}">{L_DOWNLOADERS_COPYRIGHT_DMZX}</a><br />{L_DOWNLOADERS_VERSION}{L_COLON} {DOWNLOADERS_VERSION}</div>
+
+<!-- INCLUDE simple_footer.html -->

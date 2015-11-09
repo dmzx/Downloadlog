@@ -37,8 +37,13 @@ if (empty($lang) || !is_array($lang))
 //
 
 $lang = array_merge($lang, array(
-	'DOWNLOADLOG_VIEW_LOG'	=> 'View Log',
-	'DOWNLOADLOG_USERNAME'	=> 'Username',
-	'DOWNLOADLOG_DATE'		=> 'Date of download',
-	'DOWNLOADERS_LOG'		=> 'Downloaders Log',
+	'DOWNLOADLOG_VIEW_LOG'				=> 'View Log',
+	'DOWNLOADLOG_USERNAME'				=> 'Username',
+	'DOWNLOADLOG_DATE'					=> 'Date of download',
+	'DOWNLOADERS_LOG'					=> 'Downloaders Log',
+	'DOWNLOADERS_COUNT'					=> 'One user',
+	'DOWNLOADERS_COUNTS'				=> '%d users',
+	'DOWNLOADERS_COPYRIGHT_DMZX'		=> '&copy; 2015 dmzx-web.net',
+	'DOWNLOADERS_COPYRIGHT_DMZX_TITLE'	=> 'dmzx-web.net',
+	'DOWNLOADERS_VERSION'				=> 'Extension version',
 ));

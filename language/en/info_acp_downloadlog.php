@@ -3,7 +3,6 @@
 *
 * @package phpBB Extension - Downloadlog
 * @copyright (c) 2015 dmzx - http://www.dmzx-web.net
-* @Swedish translation by Holger (https://www.maskinisten.net)
 * @license http://opensource.org/licenses/gpl-2.0.php GNU General Public License v2
 *
 */
@@ -38,8 +37,7 @@ if (empty($lang) || !is_array($lang))
 //
 
 $lang = array_merge($lang, array(
-	'DOWNLOADLOG_VIEW_LOG'	=> 'Visa logg',
-	'DOWNLOADLOG_USERNAME'	=> 'Användarnamn',
-	'DOWNLOADLOG_DATE'		=> 'Datum',
-	'DOWNLOADERS_LOG'		=> 'Nerladdningslogg',
+	'DOWNLOADLOG_SETTINGS' 						=> 'Downloadlog Settings',
+	'DOWNLOADLOG_PAGINATION_SETTING'			=> 'Pagination setting downloadlog',
+	'DOWNLOADLOG_PAGINATION_SETTING_EXPLAIN'	=> 'Value adjustable from 1 till 255 users.',
 ));

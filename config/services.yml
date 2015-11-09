@@ -10,7 +10,14 @@ services:
             - @auth
             - @dbal.conn
             - @request
+            - @pagination
+            - @controller.helper
+            - @config
             - %dmzx.downloadlog.table.downloadlog%
+    dmzx.downloadlog.acplistener:
+        class: dmzx\downloadlog\event\acp_listener
+        tags:
+            - { name: event.listener }
     dmzx.downloadlog.listener:
         class: dmzx\downloadlog\event\listener
         arguments:
