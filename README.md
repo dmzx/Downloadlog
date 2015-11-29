@@ -1,5 +1,7 @@
 # Downloadlog Extension
 
+[![Build Status](https://travis-ci.org/dmzx/Downloadlog.svg?branch=master)](https://travis-ci.org/dmzx/Downloadlog)
+
 ## Install
 
 1. Download the latest release.

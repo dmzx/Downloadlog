@@ -129,4 +129,4 @@ class downloadlog
 
 		page_footer();
 	}
-}	
+}
