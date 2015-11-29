@@ -28,7 +28,7 @@ class downloadlog_schema extends \phpbb\db\migration\migration
 			'add_tables'	=> array(
 				$this->table_prefix . 'userdownloadslog'	=> array(
 					'COLUMNS'	=> array(
-					'downloadslog_id'	=> array('UINT', NULL, 'auto_increment'),
+					'downloadslog_id'	=> array('UINT', null, 'auto_increment'),
 					'user_id'			=> array('VCHAR:8', ''),
 					'file_id'			=> array('VCHAR:8', ''),
 					'down_date'			=> array('INT:11', 0),
