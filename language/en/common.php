@@ -40,6 +40,7 @@ $lang = array_merge($lang, array(
 	'DOWNLOADLOG_VIEW_LOG'				=> 'View Log',
 	'DOWNLOADLOG_USERNAME'				=> 'Username',
 	'DOWNLOADLOG_DATE'					=> 'Date of download',
+	'DOWNLOADLOG_NOACCESS'				=> 'You don’t have access to this section',
 	'DOWNLOADERS_LOG'					=> 'Downloaders Log',
 	'DOWNLOADERS_COUNT'					=> 'One user',
 	'DOWNLOADERS_COUNTS'				=> '%d users',

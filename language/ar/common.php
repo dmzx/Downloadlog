@@ -42,6 +42,7 @@ $lang = array_merge($lang, array(
 	'DOWNLOADLOG_USERNAME'				=> 'إسم المستخدم',
 	'DOWNLOADLOG_DATE'					=> 'تاريخ التحميل',
 	'DOWNLOADERS_LOG'					=> 'سجل التحميل',
+	'DOWNLOADLOG_NOACCESS'				=> 'لم يكن لديك الوصول إلى هذا القسم',
 	'DOWNLOADERS_COUNT'					=> 'عضو واحد',
 	'DOWNLOADERS_COUNTS'				=> '%d أعضاء',
 	'DOWNLOADERS_COPYRIGHT_DMZX'		=> '&copy; 2015 dmzx-web.net',

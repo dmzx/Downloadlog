@@ -41,6 +41,7 @@ $lang = array_merge($lang, array(
 	'DOWNLOADLOG_USERNAME'				=> 'Nombre de usuario',
 	'DOWNLOADLOG_DATE'					=> 'Fecha de la descarga',
 	'DOWNLOADERS_LOG'					=> 'Registro de descargas',
+	'DOWNLOADLOG_NOACCESS'				=> 'Usted no tiene acceso a esta sección',
 	'DOWNLOADERS_COUNT'					=> 'Un usuario',
 	'DOWNLOADERS_COUNTS'				=> '%d usuarios',
 	'DOWNLOADERS_COPYRIGHT_DMZX'		=> '&copy; 2015 dmzx-web.net',

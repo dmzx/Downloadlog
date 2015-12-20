@@ -25,7 +25,6 @@ class acp_listener implements EventSubscriberInterface
 
 	public function add_options($event)
 	{
-		global $user;
 		if (($event['mode'] == 'features' || $event['mode'] == 'load') && isset($event['display_vars']['vars']['load_jumpbox']))
 		{
 			// Store display_vars event in a local variable
@@ -49,7 +48,6 @@ class acp_listener implements EventSubscriberInterface
 	*/
 	function downloadlog_length($value, $key = '')
 	{
-		global $user;
 		return '<input id="' . $key . '" type="number" size="3" maxlength="3" min="1" max="255" name="config[downloadlog_value]" value="' . $value . '" />';
 	}
 }

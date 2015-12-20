@@ -75,14 +75,15 @@ class downloadlog
 
 	public function handle_downloadlog()
 	{
+		// Add lang file
+		$this->user->add_lang_ext('dmzx/downloadlog', 'common');
+
 		if (!$this->auth->acl_get('a_'))
 		{
-			trigger_error('Access Denied');
+			throw new \phpbb\exception\http_exception(403, 'DOWNLOADLOG_NOACCESS');
 		}
 		else
 		{
-			$this->user->add_lang_ext('dmzx/downloadlog', 'common');
-
 			$fileid = $this->request->variable('file', 0);
 			$start = $this->request->variable('start', 0);
 
@@ -122,11 +123,6 @@ class downloadlog
 			'DOWNLOADERS_VERSION'	=> $this->config['downloadlog_version'],
 		));
 
-		page_header('Downloaders Log', false);
-		$this->template->set_filenames(array(
-			'body' => 'DownloadLog.html')
-		);
-
-		page_footer();
+		return $this->helper->render('DownloadLog.html', $this->user->lang('DOWNLOADERS_LOG'));
 	}
 }
