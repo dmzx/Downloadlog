@@ -16,27 +16,32 @@
 	<!-- ENDIF -->
 </div>
 
-<div class="forumbg">
+<div class="forabg">
 	<div class="inner">
-		<table class="table1">
-			<thead>
-			<tr>
-				<th style="text-align: left">{L_DOWNLOADLOG_USERNAME}</th>
-				<th style="text-align:center">{L_DOWNLOADLOG_DATE}</th>
-				</tr>
-			</thead>
-			<tbody>
-			<!-- BEGIN downloaders -->
-			<tr class="bg1">
-				<td>{downloaders.D_USERNAME}</td>
-				<td align="center">{downloaders.D_TIME}</td>
-			</tr>
-			<!-- END downloaders -->
-			</tbody>
-		</table>
+		<ul class="topiclist">
+			<li class="header">
+				<dl class="icon">
+					<dt><div class="list-inner">{L_DOWNLOADLOG_USERNAME}</div></dt>
+					<dd class="lastpost"><span>{L_DOWNLOADLOG_DATE}</span></dd>
+				</dl>
+			</li>
+		</ul>
+		<ul class="topiclist forums">
+		<!-- BEGIN downloaders -->
+		<li class="row<!-- IF downloaders.S_ROW_COUNT is even --> bg1<!-- ELSE --> bg2<!-- ENDIF -->">
+			<dl>
+				<dt>
+					<div class="list-inner">
+						{downloaders.D_USERNAME}
+					</div>
+				</dt>
+				<dd class="lastpost"><span>{downloaders.D_TIME}</span></dd>
+			</dl>
+		</li>
+		<!-- END downloaders -->
+	</ul>
 	</div>
 </div>
-
 <div class="action-bar bottom">
 	<!-- IF .pagination or DOWNLOADERS_USERS -->
 	<div class="pagination">
