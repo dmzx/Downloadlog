@@ -45,8 +45,7 @@ $lang = array_merge($lang, array(
 	'DOWNLOADLOG_NOACCESS'				=> 'لم يكن لديك الوصول إلى هذا القسم',
 	'DOWNLOADERS_COUNT'					=> 'عضو واحد',
 	'DOWNLOADERS_COUNTS'				=> '%d أعضاء',
-	'DOWNLOADERS_COPYRIGHT_DMZX'		=> '&copy; 2015 dmzx-web.net',
+	'DOWNLOADERS_COPYRIGHT_DMZX'		=> '&copy; 2017 dmzx-web.net',
 	'DOWNLOADERS_COPYRIGHT_DMZX_TITLE'	=> 'dmzx-web.net',
 	'DOWNLOADERS_VERSION'				=> 'نسخة الإضافة',
-
 ));

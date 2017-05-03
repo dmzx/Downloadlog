@@ -44,7 +44,7 @@ $lang = array_merge($lang, array(
 	'DOWNLOADLOG_NOACCESS'				=> 'Usted no tiene acceso a esta sección',
 	'DOWNLOADERS_COUNT'					=> 'Un usuario',
 	'DOWNLOADERS_COUNTS'				=> '%d usuarios',
-	'DOWNLOADERS_COPYRIGHT_DMZX'		=> '&copy; 2015 dmzx-web.net',
+	'DOWNLOADERS_COPYRIGHT_DMZX'		=> '&copy; 2017 dmzx-web.net',
 	'DOWNLOADERS_COPYRIGHT_DMZX_TITLE'	=> 'dmzx-web.net',
 	'DOWNLOADERS_VERSION'				=> 'Versión de la extensión',
 ));

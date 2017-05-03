@@ -56,11 +56,21 @@ class downloadlog
 	* @param \phpbb\pagination					$pagination
 	* @param \phpbb\controller\helper			$helper
 	* @param \phpbb\config\config				$config
-	* @param 									$userdownloadslog_table
+	* @param string								$userdownloadslog_table
 	*
 	*/
-
-	public function __construct(\phpbb\template\template $template, \phpbb\log\log_interface $log, \phpbb\user $user, \phpbb\auth\auth $auth, \phpbb\db\driver\driver_interface $db, \phpbb\request\request $request, \phpbb\pagination $pagination, \phpbb\controller\helper $helper, \phpbb\config\config $config, $userdownloadslog_table)
+	public function __construct(
+		\phpbb\template\template $template,
+		\phpbb\log\log_interface $log,
+		\phpbb\user $user,
+		\phpbb\auth\auth $auth,
+		\phpbb\db\driver\driver_interface $db,
+		\phpbb\request\request $request,
+		\phpbb\pagination $pagination,
+		\phpbb\controller\helper $helper,
+		\phpbb\config\config $config,
+		$userdownloadslog_table
+	)
 	{
 		$this->template 				= $template;
 		$this->user 					= $user;
@@ -93,25 +103,26 @@ class downloadlog
 			// Generate pagination
 			$sql = 'SELECT COUNT(downloadslog_id) AS total_downloadlogs
 				FROM ' . $this->userdownloadslog_table . '
-				WHERE user_id = user_id
-				AND file_id = ' . $fileid;
+				WHERE file_id = ' . (int) $fileid;
 			$result = $this->db->sql_query($sql);
-			$total_downloadlogs = (int) $this->db->sql_fetchfield('total_downloadlogs');
+			$total_downloadlogs = $this->db->sql_fetchfield('total_downloadlogs');
+			$this->db->sql_freeresult($result);
 
 			$sql = 'SELECT d.user_id, d.down_date, u.user_id, u.username, u.user_colour
 				FROM ' . $this->userdownloadslog_table . ' d, ' . USERS_TABLE . ' u
 				WHERE u.user_id = d.user_id
-				AND file_id = ' . $fileid . '
+					AND file_id = ' . (int) $fileid . '
 				ORDER BY d.down_date DESC';
 			$top_result = $this->db->sql_query_limit($sql, $dll, $start);
 
-			while($row = $this->db->sql_fetchrow($top_result))
+			while ($row = $this->db->sql_fetchrow($top_result))
 			{
 				$this->template->assign_block_vars('downloaders',array(
-					'D_USERNAME'			=> get_username_string('full', $row['user_id'], $row['username'], $row['user_colour']),
-					'D_TIME'				=> $this->user->format_date($row['down_date'])
+					'D_USERNAME'	=> get_username_string('full', $row['user_id'], $row['username'], $row['user_colour']),
+					'D_TIME'		=> $this->user->format_date($row['down_date'])
 				));
 			}
+			$this->db->sql_freeresult($top_result);
 		}
 
 		$pagination_url = $this->helper->route('dmzx_downloadlog_controller', array('file' => $fileid));

@@ -53,11 +53,18 @@ class listener implements EventSubscriberInterface
 	* @param \phpbb\db\driver\driver_interface	$db
 	* @param \phpbb\controller\helper			$controller_helper
 	* @param \phpbb\request\request			 	$request
-	* @param 			 						$userdownloadslog_table
+	* @param string			 					$userdownloadslog_table
 	*
 	*/
-
-	public function __construct(\phpbb\config\config $config, \phpbb\template\template $template, \phpbb\user $user, \phpbb\db\driver\driver_interface $db, \phpbb\controller\helper $controller_helper, \phpbb\request\request $request, $userdownloadslog_table)
+	public function __construct(
+		\phpbb\config\config $config,
+		\phpbb\template\template $template,
+		\phpbb\user $user,
+		\phpbb\db\driver\driver_interface $db,
+		\phpbb\controller\helper $controller_helper,
+		\phpbb\request\request $request,
+		$userdownloadslog_table
+	)
 	{
 		$this->config 					= $config;
 		$this->template 				= $template;
@@ -95,13 +102,13 @@ class listener implements EventSubscriberInterface
 
 	public function download_file_send_to_browser_before($event)
 	{
-		if($this->user->data['is_registered'])
+		if ($this->user->data['is_registered'])
 		{
 			$attach_id = $this->request->variable('id', 0);
 			$sql = 'SELECT file_id
 				FROM ' . $this->userdownloadslog_table . '
 				WHERE user_id = ' . $this->user->data['user_id'] . '
-				AND file_id = ' . $attach_id;
+					AND file_id = ' . (int) $attach_id;
 			$result = $this->db->sql_query($sql);
 			$dlrecord = $this->db->sql_fetchrow($result);
 			$this->db->sql_freeresult($result);
@@ -109,9 +116,9 @@ class listener implements EventSubscriberInterface
 			if (!$dlrecord)
 			{
 				$sql_ary = array(
-					'user_id'		 => $this->user->data['user_id'],
-					'file_id'			=> $attach_id,
-					'down_date'		 => time(),
+					'user_id'		=> $this->user->data['user_id'],
+					'file_id'		=> $attach_id,
+					'down_date'		=> time(),
 				);
 				$sql = 'INSERT INTO ' . $this->userdownloadslog_table . ' ' . $this->db->sql_build_array('INSERT', $sql_ary);
 				$this->db->sql_query($sql);

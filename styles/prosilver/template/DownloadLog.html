@@ -1,7 +1,6 @@
 <!-- INCLUDE simple_header.html -->
-<span>
+
 <h3>{L_DOWNLOADERS_LOG}{L_COLON}</h3>
-</span>
 
 <div class="action-bar top">
 	<!-- IF .pagination or DOWNLOADERS_USERS -->
@@ -20,26 +19,26 @@
 	<div class="inner">
 		<ul class="topiclist">
 			<li class="header">
-				<dl class="icon">
+				<dl class="row-item">
 					<dt><div class="list-inner">{L_DOWNLOADLOG_USERNAME}</div></dt>
 					<dd class="lastpost"><span>{L_DOWNLOADLOG_DATE}</span></dd>
 				</dl>
 			</li>
 		</ul>
 		<ul class="topiclist forums">
-		<!-- BEGIN downloaders -->
-		<li class="row<!-- IF downloaders.S_ROW_COUNT is even --> bg1<!-- ELSE --> bg2<!-- ENDIF -->">
-			<dl>
-				<dt>
-					<div class="list-inner">
-						{downloaders.D_USERNAME}
-					</div>
-				</dt>
-				<dd class="lastpost"><span>{downloaders.D_TIME}</span></dd>
-			</dl>
-		</li>
-		<!-- END downloaders -->
-	</ul>
+			<!-- BEGIN downloaders -->
+			<li class="row<!-- IF downloaders.S_ROW_COUNT is even --> bg1<!-- ELSE --> bg2<!-- ENDIF -->">
+				<dl>
+					<dt>
+						<div class="list-inner">
+							{downloaders.D_USERNAME}
+						</div>
+					</dt>
+					<dd class="lastpost"><span>{downloaders.D_TIME}</span></dd>
+				</dl>
+			</li>
+			<!-- END downloaders -->
+		</ul>
 	</div>
 </div>
 <div class="action-bar bottom">
@@ -55,6 +54,6 @@
 	<!-- ENDIF -->
 </div>
 
-<div class="copyright"><a href="http://www.dmzx-web.net/" onclick="window.open(this.href); return false" title="{L_DOWNLOADERS_COPYRIGHT_DMZX_TITLE}" alt="{L_DOWNLOADERS_COPYRIGHT_DMZX_TITLE}">{L_DOWNLOADERS_COPYRIGHT_DMZX}</a><br />{L_DOWNLOADERS_VERSION}{L_COLON} {DOWNLOADERS_VERSION}</div>
+<div class="copyright"><a href="http://www.dmzx-web.net/" onclick="window.open(this.href); return false" title="{L_DOWNLOADERS_COPYRIGHT_DMZX_TITLE}">{L_DOWNLOADERS_COPYRIGHT_DMZX}</a><br />{L_DOWNLOADERS_VERSION}{L_COLON} {DOWNLOADERS_VERSION}</div>
 
 <!-- INCLUDE simple_footer.html -->

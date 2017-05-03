@@ -44,7 +44,7 @@ $lang = array_merge($lang, array(
 	'DOWNLOADERS_LOG'					=> 'Downloaders Log',
 	'DOWNLOADERS_COUNT'					=> 'One user',
 	'DOWNLOADERS_COUNTS'				=> '%d users',
-	'DOWNLOADERS_COPYRIGHT_DMZX'		=> '&copy; 2015 dmzx-web.net',
+	'DOWNLOADERS_COPYRIGHT_DMZX'		=> '&copy; 2017 dmzx-web.net',
 	'DOWNLOADERS_COPYRIGHT_DMZX_TITLE'	=> 'dmzx-web.net',
 	'DOWNLOADERS_VERSION'				=> 'Extension version',
 ));

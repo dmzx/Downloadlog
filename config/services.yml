@@ -4,16 +4,16 @@ services:
     dmzx.downloadlog.controller:
         class: dmzx\downloadlog\controller\downloadlog
         arguments:
-            - @template
-            - @log
-            - @user
-            - @auth
-            - @dbal.conn
-            - @request
-            - @pagination
-            - @controller.helper
-            - @config
-            - %dmzx.downloadlog.table.downloadlog%
+            - '@template'
+            - '@log'
+            - '@user'
+            - '@auth'
+            - '@dbal.conn'
+            - '@request'
+            - '@pagination'
+            - '@controller.helper'
+            - '@config'
+            - '%dmzx.downloadlog.table.downloadlog%'
     dmzx.downloadlog.acplistener:
         class: dmzx\downloadlog\event\acp_listener
         tags:
@@ -21,12 +21,12 @@ services:
     dmzx.downloadlog.listener:
         class: dmzx\downloadlog\event\listener
         arguments:
-            - @config
-            - @template
-            - @user
-            - @dbal.conn
-            - @controller.helper
-            - @request
-            - %dmzx.downloadlog.table.downloadlog%
+            - '@config'
+            - '@template'
+            - '@user'
+            - '@dbal.conn'
+            - '@controller.helper'
+            - '@request'
+            - '%dmzx.downloadlog.table.downloadlog%'
         tags:
             - { name: event.listener }
