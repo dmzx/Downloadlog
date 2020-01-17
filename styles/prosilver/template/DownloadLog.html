@@ -1,59 +1,83 @@
-<!-- INCLUDE simple_header.html -->
+{% INCLUDE 'simple_header.html' %}
 
-<h3>{L_DOWNLOADERS_LOG}{L_COLON}</h3>
+{% if loops.downloaders|length %}
+<h3>{{ lang('DOWNLOADERS_LOG') }}{{ lang('COLON') }}</h3>
 
-<div class="action-bar top">
-	<!-- IF .pagination or DOWNLOADERS_USERS -->
+<div class="action-bar bar-top">
+	{% if loops.pagination|length or DOWNLOADERS_USERS %}
 	<div class="pagination">
-		 {DOWNLOADERS_USERS}
-		<!-- IF .pagination -->
-			<!-- INCLUDE pagination.html -->
-		<!-- ELSE -->
-			&bull; {PAGE_NUMBER}
-		<!-- ENDIF -->
+		 {{ DOWNLOADERS_USERS }}
+		{% if loops.pagination|length %}
+			{% INCLUDE 'pagination.html' %}
+		{% else %}
+			&bull; {{ PAGE_NUMBER }}
+		{% endif %}
 	</div>
-	<!-- ENDIF -->
+	{% endif %}
 </div>
-
 <div class="forabg">
 	<div class="inner">
 		<ul class="topiclist">
 			<li class="header">
 				<dl class="row-item">
-					<dt><div class="list-inner">{L_DOWNLOADLOG_USERNAME}</div></dt>
-					<dd class="lastpost"><span>{L_DOWNLOADLOG_DATE}</span></dd>
+					<dt><div class="list-inner">{{ lang('DOWNLOADLOG_USERNAME') }}</div></dt>
+					<dd class="posts">{{ lang('DOWNLOADLOG_TIMESDOWNLOADED') }}</dd>
+					<dd class="lastpost"><span>{{ lang('DOWNLOADLOG_DATE') }}</span></dd>
 				</dl>
 			</li>
 		</ul>
 		<ul class="topiclist forums">
-			<!-- BEGIN downloaders -->
-			<li class="row<!-- IF downloaders.S_ROW_COUNT is even --> bg1<!-- ELSE --> bg2<!-- ENDIF -->">
+			{% for downloaders in loops.downloaders %}
+			<li class="row{% if downloaders.S_ROW_COUNT is even %} bg1{% else %} bg2{% endif %}">
 				<dl>
 					<dt>
 						<div class="list-inner">
-							{downloaders.D_USERNAME}
+							{{ downloaders.D_USERNAME }}
 						</div>
 					</dt>
-					<dd class="lastpost"><span>{downloaders.D_TIME}</span></dd>
+					<dd class="posts">{{ downloaders.D_TIMES }}</dd>
+					<dd class="lastpost"><span>{{ downloaders.D_TIME }}</span></dd>
 				</dl>
 			</li>
-			<!-- END downloaders -->
+			{% endfor %}
 		</ul>
 	</div>
 </div>
-<div class="action-bar bottom">
-	<!-- IF .pagination or DOWNLOADERS_USERS -->
+<div class="action-bar bar-bottom">
+	{% if loops.pagination|length or DOWNLOADERS_USERS %}
 	<div class="pagination">
-		 {DOWNLOADERS_USERS}
-		<!-- IF .pagination -->
-			<!-- INCLUDE pagination.html -->
-		<!-- ELSE -->
-			&bull; {PAGE_NUMBER}
-		<!-- ENDIF -->
+		 {{ DOWNLOADERS_USERS }}
+		{% if loops.pagination|length %}
+			{% INCLUDE 'pagination.html' %}
+		{% else %}
+			&bull; {{ PAGE_NUMBER }}
+		{% endif %}
 	</div>
-	<!-- ENDIF -->
+	{% endif %}
 </div>
-
-<div class="copyright"><a href="http://www.dmzx-web.net/" onclick="window.open(this.href); return false" title="{L_DOWNLOADERS_COPYRIGHT_DMZX_TITLE}">{L_DOWNLOADERS_COPYRIGHT_DMZX}</a><br />{L_DOWNLOADERS_VERSION}{L_COLON} {DOWNLOADERS_VERSION}</div>
-
-<!-- INCLUDE simple_footer.html -->
+{% else %}
+<div class="forabg">
+	<div class="inner">
+		<ul class="topiclist">
+			<li class="header">
+				<dl class="row-item">
+					<dt><div class="list-inner">{{ lang('DOWNLOADERS_LOG') }}</div></dt>
+					<dd></dd>
+				</dl>
+			</li>
+		</ul>
+		<ul class="topiclist forums">
+			<li class="row">
+				<dl>
+					<dt style="font-size: 1.2em;line-height: 2.2em;padding: 4px 0; text-align:center;">
+						<div>
+							{{ lang('DOWNLOADLOG_NO_DOWNLOADS') }}
+						</div>
+					</dt>
+				</dl>
+			</li>
+		</ul>
+	</div>
+</div>
+{% endif %}
+{% INCLUDE 'simple_footer.html' %}

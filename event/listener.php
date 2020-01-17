@@ -2,7 +2,7 @@
 /**
 *
 * @package phpBB Extension - Downloadlog
-* @copyright (c) 2015 dmzx - http://www.dmzx-web.net
+* @copyright (c) 2015 dmzx - https://www.dmzx-web.net
 * @license http://opensource.org/licenses/gpl-2.0.php GNU General Public License v2
 *
 */
@@ -105,9 +105,9 @@ class listener implements EventSubscriberInterface
 		if ($this->user->data['is_registered'])
 		{
 			$attach_id = $this->request->variable('id', 0);
-			$sql = 'SELECT file_id
+			$sql = 'SELECT file_id, downloadslog_counter_user
 				FROM ' . $this->userdownloadslog_table . '
-				WHERE user_id = ' . $this->user->data['user_id'] . '
+				WHERE user_id = ' . (int) $this->user->data['user_id'] . '
 					AND file_id = ' . (int) $attach_id;
 			$result = $this->db->sql_query($sql);
 			$dlrecord = $this->db->sql_fetchrow($result);
@@ -116,13 +116,30 @@ class listener implements EventSubscriberInterface
 			if (!$dlrecord)
 			{
 				$sql_ary = array(
-					'user_id'		=> $this->user->data['user_id'],
-					'file_id'		=> $attach_id,
-					'down_date'		=> time(),
+					'user_id'					=> $this->user->data['user_id'],
+					'file_id'					=> $attach_id,
+					'downloadslog_counter_user'	=> 1,
+					'down_date'					=> time(),
 				);
 				$sql = 'INSERT INTO ' . $this->userdownloadslog_table . ' ' . $this->db->sql_build_array('INSERT', $sql_ary);
 				$this->db->sql_query($sql);
 			}
+			else
+			{
+				$downloadslog_counter_user = $dlrecord['downloadslog_counter_user'] + 1;
+
+				$sql_ary = array(
+					'downloadslog_counter_user'	=> (int) $downloadslog_counter_user,
+					'down_date'					=> time(),
+				);
+
+				$sql_insert = 'UPDATE ' . $this->userdownloadslog_table . '
+					SET	' . $this->db->sql_build_array('UPDATE', $sql_ary) . '
+					WHERE user_id = ' . (int) $this->user->data['user_id'] . '
+						AND file_id = ' . (int) $attach_id;
+				$this->db->sql_query($sql_insert);
+			}
 		}
 	}
 }
+

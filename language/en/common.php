@@ -2,7 +2,7 @@
 /**
 *
 * @package phpBB Extension - Downloadlog
-* @copyright (c) 2015 dmzx - http://www.dmzx-web.net
+* @copyright (c) 2015 dmzx - https://www.dmzx-web.net
 * @license http://opensource.org/licenses/gpl-2.0.php GNU General Public License v2
 *
 */
@@ -42,9 +42,11 @@ $lang = array_merge($lang, array(
 	'DOWNLOADLOG_DATE'					=> 'Date of download',
 	'DOWNLOADLOG_NOACCESS'				=> 'You don’t have access to this section',
 	'DOWNLOADERS_LOG'					=> 'Downloaders Log',
-	'DOWNLOADERS_COUNT'					=> 'One user',
-	'DOWNLOADERS_COUNTS'				=> '%d users',
-	'DOWNLOADERS_COPYRIGHT_DMZX'		=> '&copy; 2017 dmzx-web.net',
-	'DOWNLOADERS_COPYRIGHT_DMZX_TITLE'	=> 'dmzx-web.net',
-	'DOWNLOADERS_VERSION'				=> 'Extension version',
+	'DOWNLOADERS_COUNTS' => [
+		0 => 'no user',
+		1 => '%d user',
+		2 => '%d users',
+	],
+	'DOWNLOADLOG_TIMESDOWNLOADED'		=> 'Downloaded',
+	'DOWNLOADLOG_NO_DOWNLOADS'			=> 'No logs yet.',
 ));

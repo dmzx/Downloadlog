@@ -2,7 +2,7 @@
 /**
 *
 * @package phpBB Extension - Downloadlog
-* @copyright (c) 2015 dmzx - http://www.dmzx-web.net
+* @copyright (c) 2015 dmzx - https://www.dmzx-web.net
 * @license http://opensource.org/licenses/gpl-2.0.php GNU General Public License v2
 *
 */
@@ -85,15 +85,15 @@ class downloadlog
 
 	public function handle_downloadlog()
 	{
-		// Add lang file
-		$this->user->add_lang_ext('dmzx/downloadlog', 'common');
-
 		if (!$this->auth->acl_get('a_'))
 		{
 			throw new \phpbb\exception\http_exception(403, 'DOWNLOADLOG_NOACCESS');
 		}
 		else
 		{
+			// Add lang file
+			$this->user->add_lang_ext('dmzx/downloadlog', 'common');
+
 			$fileid = $this->request->variable('file', 0);
 			$start = $this->request->variable('start', 0);
 
@@ -108,7 +108,7 @@ class downloadlog
 			$total_downloadlogs = $this->db->sql_fetchfield('total_downloadlogs');
 			$this->db->sql_freeresult($result);
 
-			$sql = 'SELECT d.user_id, d.down_date, u.user_id, u.username, u.user_colour
+			$sql = 'SELECT d.user_id, d.down_date, d.downloadslog_counter_user, u.user_id, u.username, u.user_colour
 				FROM ' . $this->userdownloadslog_table . ' d, ' . USERS_TABLE . ' u
 				WHERE u.user_id = d.user_id
 					AND file_id = ' . (int) $fileid . '
@@ -119,7 +119,8 @@ class downloadlog
 			{
 				$this->template->assign_block_vars('downloaders',array(
 					'D_USERNAME'	=> get_username_string('full', $row['user_id'], $row['username'], $row['user_colour']),
-					'D_TIME'		=> $this->user->format_date($row['down_date'])
+					'D_TIME'		=> $this->user->format_date($row['down_date']),
+					'D_TIMES'		=> $row['downloadslog_counter_user'],
 				));
 			}
 			$this->db->sql_freeresult($top_result);
@@ -130,10 +131,9 @@ class downloadlog
 		//Start pagination
 		$this->pagination->generate_template_pagination($pagination_url, 'pagination', 'start', $total_downloadlogs, $dll, $start);
 		$this->template->assign_vars(array(
-			'DOWNLOADERS_USERS'		=> ($total_downloadlogs == 1) ? $this->user->lang['DOWNLOADERS_COUNT'] : sprintf($this->user->lang['DOWNLOADERS_COUNTS'], $total_downloadlogs),
-			'DOWNLOADERS_VERSION'	=> $this->config['downloadlog_version'],
+			'DOWNLOADERS_USERS'		=> $this->user->lang('DOWNLOADERS_COUNTS', (int) $total_downloadlogs),
 		));
 
-		return $this->helper->render('DownloadLog.html', $this->user->lang('DOWNLOADERS_LOG'));
+		return $this->helper->render('downloadlog.html', $this->user->lang('DOWNLOADERS_LOG'));
 	}
 }

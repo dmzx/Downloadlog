@@ -1,7 +1,100 @@
 div.inline-attachment dl.file {
-	 display: none;
+	display: none;
 }
 
 dl.file {
-	 display: none;
+	display: none;
 }
+
+dl.files {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	display: block;
+}
+
+dl.files dt {
+	text-transform: none;
+	margin: 0;
+	padding: 0;
+	font-weight: bold;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+dl.files dd {
+	margin: 0;
+	padding: 0;
+}
+
+dl.files dd {
+    color: #666666;
+}
+ 
+div.inline-attachment dl.file {
+	display: none;
+}
+
+dl.file{
+	display: none;
+}
+
+/* ddd */
+dl.extra-box {
+    border-radius: 5px;
+    display: block;
+    margin-bottom: 5px;
+    min-height: 59px;
+    padding: 10px 10px 8px;
+    position: relative;
+    width: 300px;
+	text-decoration: none !important;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+	font-weight: bold;
+	color: #ffffff !important;
+	font-family: Verdana,Arial,Helvetica,sans-serif;
+}
+dl.extra-box dt a {
+    color: #333333 !important;
+    display: block;
+    font-weight: bold;
+    padding-bottom: 5px;
+    text-decoration: none !important;
+}
+dl.extra-box dd a, dl.download-contrib dd {
+    color: #ffffff !important;
+    display: block;
+    font-weight: bold;
+    padding-right: 40px;
+    text-decoration: none !important;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+}
+
+dl.extra-box.orange, .big-tag.orange {
+    background: rgba(0, 0, 0, 0) linear-gradient(45deg, #ffc561 0%, #ff8a2b 100%) repeat scroll 0 0;
+}
+
+dl.extra-box.download dd.extras {
+    color: #fff;
+    margin-top: 0.5em;
+}
+
+dl.extra-box.download dd.extras a {
+    color: #d21a4e !important;
+    display: inline;
+    padding: 0;
+    text-shadow: none;
+}
+
+dl.download::before {
+    background: rgba(0, 0, 0, 0) url("./images/download-arrow.png") no-repeat scroll 0 0;
+    content: "";
+    display: block;
+    height: 50px;
+    position: absolute;
+    right: 5px;
+    top: 0;
+    width: 47px;
+}
+
+dl.download dt {
+    position: relative;
+    text-transform: uppercase;
+} 
