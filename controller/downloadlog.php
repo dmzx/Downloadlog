@@ -9,33 +9,40 @@
 
 namespace dmzx\downloadlog\controller;
 
+use phpbb\exception\http_exception;
+use phpbb\template\template;
+use phpbb\user;
+use phpbb\auth\auth;
+use phpbb\db\driver\driver_interface as db_interface;
+use phpbb\request\request_interface;
+use phpbb\pagination;
+use phpbb\controller\helper;
+use phpbb\config\config;
+
 class downloadlog
 {
-	/** @var \phpbb\template\template */
+	/** @var template */
 	protected $template;
 
-	/** @var \phpbb\user */
+	/** @var user */
 	protected $user;
 
-	/** @var \phpbb\auth\auth */
+	/** @var auth */
 	protected $auth;
 
-	/** @var \phpbb\db\driver\driver_interface */
+	/** @var driver_interface */
 	protected $db;
 
-	/** @var \phpbb\cache\service */
-	protected $cache;
-
-	/** @var \phpbb\request\request */
+	/** @var request */
 	protected $request;
 
-	/** @var \phpbb\pagination */
+	/** @var pagination */
 	protected $pagination;
 
-	/** @var \phpbb\controller\helper */
+	/** @var helper */
 	protected $helper;
 
-	/** @var \phpbb\config\config */
+	/** @var config */
 	protected $config;
 
 	/**
@@ -48,27 +55,26 @@ class downloadlog
 	/**
 	* Constructor
 	*
-	* @param \phpbb\template\template			$template
-	* @param \phpbb\user						$user
-	* @param \phpbb\auth\auth					$auth
-	* @param \phpbb\db\driver\driver_interface	$db
-	* @param \phpbb\request\request				$request
-	* @param \phpbb\pagination					$pagination
-	* @param \phpbb\controller\helper			$helper
-	* @param \phpbb\config\config				$config
-	* @param string								$userdownloadslog_table
+	* @param template						$template
+	* @param user							$user
+	* @param auth							$auth
+	* @param driver_interface				$db
+	* @param request_interface 				$request
+	* @param pagination						$pagination
+	* @param helper							$helper
+	* @param config							$config
+	* @param string							$userdownloadslog_table
 	*
 	*/
 	public function __construct(
-		\phpbb\template\template $template,
-		\phpbb\log\log_interface $log,
-		\phpbb\user $user,
-		\phpbb\auth\auth $auth,
-		\phpbb\db\driver\driver_interface $db,
-		\phpbb\request\request $request,
-		\phpbb\pagination $pagination,
-		\phpbb\controller\helper $helper,
-		\phpbb\config\config $config,
+		template $template,
+		user $user,
+		auth $auth,
+		db_interface $db,
+		request_interface	$request,
+		pagination $pagination,
+		helper $helper,
+		config $config,
 		$userdownloadslog_table
 	)
 	{
@@ -85,15 +91,14 @@ class downloadlog
 
 	public function handle_downloadlog()
 	{
+		$this->user->add_lang_ext('dmzx/downloadlog', 'common');
+
 		if (!$this->auth->acl_get('a_'))
 		{
-			throw new \phpbb\exception\http_exception(403, 'DOWNLOADLOG_NOACCESS');
+			throw new http_exception(403, 'DOWNLOADLOG_NOACCESS');
 		}
 		else
 		{
-			// Add lang file
-			$this->user->add_lang_ext('dmzx/downloadlog', 'common');
-
 			$fileid = $this->request->variable('file', 0);
 			$start = $this->request->variable('start', 0);
 
@@ -117,22 +122,23 @@ class downloadlog
 
 			while ($row = $this->db->sql_fetchrow($top_result))
 			{
-				$this->template->assign_block_vars('downloaders',array(
+				$this->template->assign_block_vars('downloaders',[
 					'D_USERNAME'	=> get_username_string('full', $row['user_id'], $row['username'], $row['user_colour']),
 					'D_TIME'		=> $this->user->format_date($row['down_date']),
 					'D_TIMES'		=> $row['downloadslog_counter_user'],
-				));
+				]);
 			}
 			$this->db->sql_freeresult($top_result);
 		}
 
-		$pagination_url = $this->helper->route('dmzx_downloadlog_controller', array('file' => $fileid));
+		$pagination_url = $this->helper->route('dmzx_downloadlog_controller', ['file' => $fileid]);
 
 		//Start pagination
 		$this->pagination->generate_template_pagination($pagination_url, 'pagination', 'start', $total_downloadlogs, $dll, $start);
-		$this->template->assign_vars(array(
+
+		$this->template->assign_vars([
 			'DOWNLOADERS_USERS'		=> $this->user->lang('DOWNLOADERS_COUNTS', (int) $total_downloadlogs),
-		));
+		]);
 
 		return $this->helper->render('downloadlog.html', $this->user->lang('DOWNLOADERS_LOG'));
 	}

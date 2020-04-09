@@ -5,7 +5,6 @@ services:
         class: dmzx\downloadlog\controller\downloadlog
         arguments:
             - '@template'
-            - '@log'
             - '@user'
             - '@auth'
             - '@dbal.conn'
@@ -14,10 +13,22 @@ services:
             - '@controller.helper'
             - '@config'
             - '%dmzx.downloadlog.table.downloadlog%'
-    dmzx.downloadlog.acplistener:
-        class: dmzx\downloadlog\event\acp_listener
-        tags:
-            - { name: event.listener }
+    dmzx.downloadlog.admin.controller:
+        class: dmzx\downloadlog\controller\admin_controller
+        arguments:
+            - '@config'
+            - '@template'
+            - '@log'
+            - '@user'
+            - '@dbal.conn'
+            - '@request'
+            - '@language'
+            - '@pagination'
+            - '@cache'
+            - '%core.root_path%'
+            - '%core.php_ext%'
+            - '%dmzx.downloadlog.table.downloadlog%'
+            - '%tables.attachments%'
     dmzx.downloadlog.listener:
         class: dmzx\downloadlog\event\listener
         arguments:

@@ -1,0 +1,64 @@
+{% INCLUDE 'overall_header.html' %}
+
+<a name="maincontent"></a>
+
+<h1>{{ lang('ACP_DOWNLOADLOG_TITLE') }}</h1>
+<p>{{ lang('ACP_DOWNLOADLOG_TITLE_EXPLAIN') }}</p>
+
+<p><img src="https://img.shields.io/badge/{{ lang('Version') }}-{{ ACP_DOWNLOADLOG_VERSION }}-green.svg?style=plastic" /></p>
+
+<form id="acp_htaccesseditor" method="POST" action="{{ U_ACTION }}" >
+	<fieldset>
+		<legend>{{ lang('ACP_DOWNLOADLOG_SETTINGS') }}</legend>
+		<dl>
+			<dt><label for="downloadlog_value">{{ lang('ACP_DOWLOADLOG_PAGINATION_VALUE') }}{{ lang('COLON') }}</label><br />
+			<span>{{ lang('ACP_DOWLOADLOG_PAGINATION_VALUE_EXPLAIN') }}</span></dt>
+			<dd><input type="number" name="downloadlog_value" size="4" maxlength="4" min="1" max="255" value="{{ DOWLOADLOG_PAGINATION_VALUE }}" />&nbsp;<input class="button1" type="submit" id="submit" name="submit" value="{{ lang('SUBMIT') }}" /></dd>
+		</dl>
+		{{ S_FORM_TOKEN }}
+	</fieldset>
+	<fieldset>
+		<legend>{{ lang('ACP_DOWNLOADLOG_DOWNLOADS') }}</legend>
+		{% if loops.pagination|length or ACP_TOTAL_IMAGES %}
+		<div class="pagination">
+			{{ ACP_TOTAL_IMAGES }}
+			{% if loops.pagination|length %}
+				{% INCLUDE 'pagination.html' %}
+			{% else %}
+				&bull; {{ PAGE_NUMBER }}
+			{% endif %}
+		</div>
+		{% endif %}
+		<div class="clear"></div>
+		<table cellspacing="1">
+			<thead>
+				<tr>
+					<th>{{ lang('ACP_DOWNLOAD_USERNAME') }}</th>
+					<th	style="text-align: center;">{{ lang('ACP_DOWNLOAD_DOWNLOADED') }}</th>
+					<th>{{ lang('ACP_DOWNLOAD_NAME') }}</th>
+					<th>{{ lang('ACP_DOWNLOAD_TOPIC') }}</th>
+					<th style="text-align: center;">{{ lang('ACP_DOWNLOAD_EXT_TYPE') }}</th>
+					<th>{{ lang('ACP_DOWNLOAD_GROUP') }}</th>
+					<th>{{ lang('ACP_DOWNLOAD_SIZE') }}</th>
+					<th>{{ lang('ACP_DOWNLOAD_TIME') }}</th>
+				</tr>
+			</thead>
+			<tbody>
+			{% for downloaders in loops.downloaders %}
+				{% if downloaders.S_ROW_COUNT is even %}<tr class="row1">{% else %}<tr class="row2">{% endif %}
+					<td valign="top">{{ downloaders.D_USERNAME	}}</td>
+					<td valign="top" style="text-align: center;">{{ downloaders.D_TIMES }}</td>
+					<td valign="top"><a href="{{ downloaders.D_U_FILE }}"><strong>{{ downloaders.D_NAME }}</strong></td>
+					<td valign="top"><a href="{{ downloaders.D_U_VIEW_TOPIC }}"><strong>{{ downloaders.D_TOPIC_TITLE }}</strong></a></td>
+					<td valign="top" style="text-align: center;">{{ downloaders.D_EXT }}</td>
+					<td valign="top">{{ downloaders.D_EXT_GROUP_NAME }}</td>
+					<td valign="top">{{ downloaders.D_SIZE }}</td>
+					<td valign="top">{{ downloaders.D_TIME }}</td>
+				</tr>
+			{% endfor %}
+			</tbody>
+		</table>
+	</fieldset>
+</form>
+
+{% INCLUDE 'overall_footer.html' %}

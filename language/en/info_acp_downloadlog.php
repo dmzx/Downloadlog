@@ -2,14 +2,11 @@
 /**
 *
 * @package phpBB Extension - Downloadlog
-* @copyright (c) 2015 dmzx - https://www.dmzx-web.net
+* @copyright (c) 2020 dmzx - https://www.dmzx-web.net
 * @license http://opensource.org/licenses/gpl-2.0.php GNU General Public License v2
 *
 */
 
-/**
-* DO NOT CHANGE
-*/
 if (!defined('IN_PHPBB'))
 {
 	exit;
@@ -17,7 +14,7 @@ if (!defined('IN_PHPBB'))
 
 if (empty($lang) || !is_array($lang))
 {
-	$lang = array();
+	$lang = [];
 }
 
 // DEVELOPERS PLEASE NOTE
@@ -36,8 +33,9 @@ if (empty($lang) || !is_array($lang))
 // ’ » “ ” …
 //
 
-$lang = array_merge($lang, array(
-	'DOWNLOADLOG_SETTINGS' 						=> 'Downloadlog Settings',
-	'DOWNLOADLOG_PAGINATION_SETTING'			=> 'Pagination setting downloadlog',
-	'DOWNLOADLOG_PAGINATION_SETTING_EXPLAIN'	=> 'Value adjustable from 1 till 255 users.',
-));
+$lang = array_merge($lang, [
+	'ACP_DOWNLOADLOG_TITLE'							=> 'Downloadlog',
+	'ACP_DOWNLOADLOG_SETTINGS' 						=> 'Settings',
+	//Log
+	'LOG_DOWNLOADLOG_SETTINGS'						=> '<strong>Downloadlog settings saved</strong>',
+]);

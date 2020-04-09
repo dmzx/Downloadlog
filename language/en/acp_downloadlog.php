@@ -2,7 +2,7 @@
 /**
 *
 * @package phpBB Extension - Downloadlog
-* @copyright (c) 2015 dmzx - https://www.dmzx-web.net
+* @copyright (c) 2020 dmzx - https://www.dmzx-web.net
 * @license http://opensource.org/licenses/gpl-2.0.php GNU General Public License v2
 *
 */
@@ -34,16 +34,21 @@ if (empty($lang) || !is_array($lang))
 //
 
 $lang = array_merge($lang, [
-	'DOWNLOADLOG_VIEW_LOG'				=> 'View Log',
-	'DOWNLOADLOG_USERNAME'				=> 'Username',
-	'DOWNLOADLOG_DATE'					=> 'Date of download',
-	'DOWNLOADLOG_NOACCESS'				=> 'You don’t have access to this section',
-	'DOWNLOADERS_LOG'					=> 'Downloaders Log',
-	'DOWNLOADERS_COUNTS' => [
-		0 => 'no user',
-		1 => '%d user',
-		2 => '%d users',
+	'ACP_DOWNLOADLOG_SETTINGS_SAVED'			=> 'Downloadlog saved.',
+	'ACP_DOWLOADLOG_PAGINATION_VALUE'			=> 'Pagination setting downloadlog',
+	'ACP_DOWNLOADLOG_DOWNLOADS'					=> 'Downloads',
+	'ACP_DOWNLOADLOG_TITLE_EXPLAIN'				=> 'Total downloadlog for each member.',
+	'ACP_DOWLOADLOG_PAGINATION_VALUE_EXPLAIN'	=> 'Value adjustable from 1 till 255 users.<br>For forum and ACP pagination.',
+	'ACP_DOWNLOAD_USERNAME' 					=> 'Username',
+	'ACP_DOWNLOAD_DOWNLOADED' 					=> 'Downloaded',
+	'ACP_DOWNLOAD_NAME' 						=> 'File name',
+	'ACP_DOWNLOAD_EXT_TYPE' 					=> 'Extension',
+	'ACP_DOWNLOAD_SIZE' 						=> 'File Size',
+	'ACP_DOWNLOAD_TIME' 						=> 'Time',
+	'ACP_DOWNLOAD_TOPIC' 						=> 'Topic',
+	'ACP_DOWNLOAD_GROUP' 						=> 'Extension group',
+	'ACP_DOWNLOAD_DOWNLOADS'		=>	[
+		1 => '%s download',
+		2 => '%s downloads',
 	],
-	'DOWNLOADLOG_TIMESDOWNLOADED'		=> 'Downloaded',
-	'DOWNLOADLOG_NO_DOWNLOADS'			=> 'No logs yet.',
 ]);

@@ -9,32 +9,32 @@
 
 namespace dmzx\downloadlog\event;
 
-/**
-* @ignore
-*/
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use phpbb\config\config;
+use phpbb\template\template;
+use phpbb\user;
+use phpbb\db\driver\driver_interface as db_interface;
+use phpbb\controller\helper;
+use phpbb\request\request_interface;
 
-/**
-* Event listener
-*/
 class listener implements EventSubscriberInterface
 {
-	/** @var \phpbb\config\config */
+	/** @var config */
 	protected $config;
 
-	/** @var \phpbb\template\template */
+	/** @var template */
 	protected $template;
 
-	/** @var \phpbb\user */
+	/** @var user */
 	protected $user;
 
-	/** @var \phpbb\db\driver\driver_interface */
+	/** @var db_interface */
 	protected $db;
 
-	/** @var \phpbb\controller\helper */
-	protected $controller_helper;
+	/** @var helper */
+	protected $helper;
 
-	/** @var \phpbb\request\request */
+	/** @var request */
 	protected $request;
 
 	/**
@@ -47,22 +47,22 @@ class listener implements EventSubscriberInterface
 	/**
 	* Constructor
 	*
-	* @param \phpbb\config\config				$config
-	* @param \phpbb\template\template			$template
-	* @param \phpbb\user						$user
-	* @param \phpbb\db\driver\driver_interface	$db
-	* @param \phpbb\controller\helper			$controller_helper
-	* @param \phpbb\request\request			 	$request
-	* @param string			 					$userdownloadslog_table
+	* @param config					$config
+	* @param template				$template
+	* @param user					$user
+	* @param db_interface			$db
+	* @param helper					$helper
+	* @param request_interface		$request
+	* @param string			 		$userdownloadslog_table
 	*
 	*/
 	public function __construct(
-		\phpbb\config\config $config,
-		\phpbb\template\template $template,
-		\phpbb\user $user,
-		\phpbb\db\driver\driver_interface $db,
-		\phpbb\controller\helper $controller_helper,
-		\phpbb\request\request $request,
+		config $config,
+		template $template,
+		user $user,
+		db_interface $db,
+		helper $helper,
+		request_interface $request,
 		$userdownloadslog_table
 	)
 	{
@@ -70,7 +70,7 @@ class listener implements EventSubscriberInterface
 		$this->template 				= $template;
 		$this->user 					= $user;
 		$this->db 						= $db;
-		$this->controller_helper 		= $controller_helper;
+		$this->helper 					= $helper;
 		$this->request 					= $request;
 		$this->userdownloadslog_table 	= $userdownloadslog_table;
 	}
@@ -95,14 +95,14 @@ class listener implements EventSubscriberInterface
 	public function viewtopic_assign_template_vars_before($event)
 	{
 		$this->user->add_lang_ext('dmzx/downloadlog', 'common');
-		$this->template->assign_vars(array(
-			'U_DOWNLOADLOG' => $this->controller_helper->route('dmzx_downloadlog_controller'),
-		));
+		$this->template->assign_vars([
+			'U_DOWNLOADLOG' => $this->helper->route('dmzx_downloadlog_controller'),
+		]);
 	}
 
 	public function download_file_send_to_browser_before($event)
 	{
-		if ($this->user->data['is_registered'])
+		if ($this->user->data['is_registered'] && strpos($event['attachment']['mimetype'], 'image') !== 0)
 		{
 			$attach_id = $this->request->variable('id', 0);
 			$sql = 'SELECT file_id, downloadslog_counter_user
@@ -115,12 +115,12 @@ class listener implements EventSubscriberInterface
 
 			if (!$dlrecord)
 			{
-				$sql_ary = array(
+				$sql_ary = [
 					'user_id'					=> $this->user->data['user_id'],
 					'file_id'					=> $attach_id,
 					'downloadslog_counter_user'	=> 1,
 					'down_date'					=> time(),
-				);
+				];
 				$sql = 'INSERT INTO ' . $this->userdownloadslog_table . ' ' . $this->db->sql_build_array('INSERT', $sql_ary);
 				$this->db->sql_query($sql);
 			}
@@ -128,10 +128,10 @@ class listener implements EventSubscriberInterface
 			{
 				$downloadslog_counter_user = $dlrecord['downloadslog_counter_user'] + 1;
 
-				$sql_ary = array(
+				$sql_ary = [
 					'downloadslog_counter_user'	=> (int) $downloadslog_counter_user,
 					'down_date'					=> time(),
-				);
+				];
 
 				$sql_insert = 'UPDATE ' . $this->userdownloadslog_table . '
 					SET	' . $this->db->sql_build_array('UPDATE', $sql_ary) . '
@@ -142,4 +142,3 @@ class listener implements EventSubscriberInterface
 		}
 	}
 }
-

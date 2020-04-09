@@ -3,8 +3,8 @@
 	"type": "phpbb-extension",
 	"description": "This extension will add a downloadlog for downloaded attachments.",
 	"homepage": "https://www.dmzx-web.net",
-	"version": "1.0.3",
-	"time": "2020-01-15",
+	"version": "1.0.4",
+	"time": "2020-04-08",
 	"keywords": [
 		"phpbb",
 		"extension",
